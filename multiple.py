@@ -14,7 +14,7 @@ parser.add_argument("--master_addr", default="127.0.0.1", type=str)
 parser.add_argument("--master_port", default="12355", type=str)
 args = parser.parse_args()
 
-
+# TODO：1
 def example(local_rank, node_rank, local_size, world_size):
     # 初始化
     rank = local_rank + node_rank * local_size
