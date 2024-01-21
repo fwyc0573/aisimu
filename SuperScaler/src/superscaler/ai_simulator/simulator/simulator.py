@@ -141,7 +141,9 @@ class Simulator():
 
         if not isinstance(device, FIFODevice) and device in self.__sorted_Device_set:
             self.__sorted_Device_set.remove(device)
-
+        
+        # get_execution_time() 返回的是节点预计的执行时间，而不是节点已经执行的时间。
+        # 这个值在节点被创建时就已经设定好，通常基于节点代表的操作（如计算任务、数据传输等）的预期成本。
         if self.__check_counter_part(device_name):
             if device_name == self.__compute_device:
                 exec_node.set_execution_time(exec_node.get_execution_time() * COMP_MUL)
@@ -172,7 +174,8 @@ class Simulator():
             self.__sorted_Device_set.pop(0)
 
         return earliest_complete_time, earliest_device
-
+    
+    # key function in class Simulator
     def __next_step(self):
         '''Wait until any executing node is done. Get the timestamp.
         Mark the node as 'done'. Then dequeue it from device.
@@ -180,31 +183,36 @@ class Simulator():
         If a successor node is ready, start it.
         '''
         # Find the first completed node
+        # TODO：为什么要找earliest_device呢？其它完成的节点的含义是什么？还是说只是按照时间顺序来找？
         earliest_complete_time, earliest_device = \
             self.__find_earliest_complete_device_by_SortedSet()
-
+        # 检查是否完成模拟
         if earliest_complete_time == RET_SIMULATION_FINISH:
             return RET_SIMULATION_FINISH
 
         self.__time_now = earliest_complete_time
+        # 获取最早完成任务的节点
         earliest_node = earliest_device.get_next_node()
-        # Handle the node
+        # Handle the node，标记为完成状态
         earliest_node.finish()
         self.__execution_dequeue_time.append((earliest_node.get_index(),
                                               self.__time_now))
 
-        # Insert the next node into self.__sorted_Device_set
+        # Insert the next node into self.__sorted_Device_set；该device中节点是否都处理完成
         if not earliest_device.is_idle():
             self.__sorted_Device_set.add(earliest_device)
 
-        # Handle successor nodes
+        # Handle successor nodes,有点像拓扑排序
         for suc_node in earliest_node.get_successor_nodes():
             suc_node.decrease_remain_dependency_cnt(1)
             if suc_node.is_ready():
                 self.__start_node_with_SortedSet(suc_node)
 
         device_name = earliest_device.name()
+        # 检查是否存在对应的配对设备，检查当前完成任务的设备（如GPU）是否有一个对应的配对设备（如CPU），用于处理网络通信或其他类型的任务。
         if self.__check_counter_part(device_name) and earliest_device.is_idle():
+            # TODO: 为什么是 (counter_device._next_finish_time - self.__time_now)？
+            # TODO: 这一步模拟了node的compu时间和commut时间？对应文章哪一步骤？
             if device_name == self.__compute_device:
                 counter_device = self.__devices[self.__network_device]
                 counter_device._next_finish_time = (counter_device._next_finish_time - self.__time_now) / NCCL_MUL + self.__time_now
@@ -265,6 +273,10 @@ class Simulator():
         while(finish_time != RET_SIMULATION_FINISH):
             # Wait until one node is done.
             finish_time = self.__next_step()
+            '''找到最早完成的设备和时间。
+            更新时间戳到这个最早完成的时间。
+            完成该节点的处理，更新其后继节点的依赖计数。
+            如果后继节点就绪，开始执行这些节点。'''
         # send warning if there are nodes haven't been executed
         self.__check_if_all_nodes_done()
         return (self.__time_now,

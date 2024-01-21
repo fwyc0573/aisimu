@@ -89,7 +89,9 @@ class TorchParser(DAGParser):
         attrs['device'] = device
         attrs['tensor_type'] = node['output_types']
         attrs['output_shape'] = node['output_shapes']
+
         # TODO add Pytorch database
+        # TODO: 什么是execution_time？record里头记录了所有excution时间？对应paper哪一步？
         execution_time = self.__Profiler.get_execution_time_by_key(node['name'])
         if execution_time is None:
             attrs['execution_time'] = self.generate_fake_execution_time(attrs, gpu)
@@ -110,6 +112,7 @@ class TorchParser(DAGParser):
         self.torch_graph = json.load(open(graph))
         node_list = []
         for node in self.torch_graph:
+            # 加入节点，每个node有一堆自己的属性
             node_list.append(self.extract_attrs(node, device, gpu))
 
         return node_list

@@ -16,6 +16,7 @@ baseline_path:
 resource_pool_path:
     'data/resource_pool.yaml'
 
+# TODO: how to use .pbtxt?
 tasks:
     alexnet:
         graph_path:

@@ -67,6 +67,8 @@ class GPURoundRobinMapper(PlanMapper):
     def __assign_device(self, node_list):
         ''' This function assigns the virtual devices of node_list
             as the real devices of resource_pool
+            检查资源池中是否有足够的GPU来满足node_list中的设备需求。
+            然后,使用RoundRobin算法将节点分配到GPU上。
         '''
         # Record all devices of node_list
         devices = []
@@ -80,6 +82,7 @@ class GPURoundRobinMapper(PlanMapper):
             # Resource Pool is empty
             raise RuntimeError("Resource Pool is empty")
             return False
+        # TODO:1个设备对应1个GPU吗，为什么？
         if len(self.__gpus) < len(devices):
             # GPU count in resource_pool can't meet the requirement
             raise RuntimeError("GPU count in resource_pool can't meet the requirement")

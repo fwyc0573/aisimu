@@ -17,6 +17,7 @@ class AISimulatorAdapter(Adapter):
 
         Args:
             node_list: list
+            NodeList: customized structure type
         '''
         if(not isinstance(node_list, NodeList) and
            not isinstance(node_list, list)):

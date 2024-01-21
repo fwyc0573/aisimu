@@ -23,6 +23,7 @@ host_dict = {2:'host2',
              8:'host8',
              16:'host16'}
 
+# 远程主机上执行命令
 ddp_meta_command = "pdsh -N -R ssh -w ^{} 'sudo docker exec --workdir /mnt/aisim lc bash /mnt/aisim/ddp_profile.sh {} {} {} {}'"
 
 def baseline_test(args, config):
@@ -37,7 +38,7 @@ def baseline_test(args, config):
                                           args.model_zoo.get_type(model))
             time = os.popen(cmd).read().split('\n')[0]
             args.model_zoo.set_baseline_time(value, model, float(time))
-    args.model_zoo.dump_baseline()
+    args.model_zoo.dump_baseline() # 结果保存到文件中
     print(args.model_zoo.get_baseline())
 
 def one_click_test(args, config):

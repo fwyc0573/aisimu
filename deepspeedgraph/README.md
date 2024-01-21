@@ -1,0 +1,1 @@
+## 用DEEPSPPED架构的一些训练示例，包含pipeline训练，但是看测试的模型来说应该不涉及MERAK。

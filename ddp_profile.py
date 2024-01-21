@@ -58,6 +58,7 @@ elif FLAGS.type == 'NLP':
     optimizer = optim.SGD(module.parameters(), lr=0.01)
 
 module = DDP(module, device_ids=[local_rank], output_device=local_rank, bucket_cap_mb=bucket_cap_mb)
+
 def benchmark_step():
     optimizer.zero_grad()
     output = module(example)

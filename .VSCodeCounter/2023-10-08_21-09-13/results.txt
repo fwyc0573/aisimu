@@ -1,0 +1,197 @@
+Date : 2023-10-08 21:09:13
+Directory : e:\HUBOther\ML_Sys_Merak\SuperScaler\src
+Total : 132 files,  25701 codes, 1361 comments, 2036 blanks, all 29098 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| JSON     |          2 |     15,552 |          0 |          0 |     15,552 |
+| C++      |         79 |      6,335 |        862 |      1,173 |      8,370 |
+| Python   |         47 |      3,549 |        497 |        747 |      4,793 |
+| Markdown |          2 |        175 |          0 |         97 |        272 |
+| CUDA C++ |          1 |         73 |          2 |         15 |         90 |
+| Docker   |          1 |         17 |          0 |          4 |         21 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                               | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                  |        132 |     25,701 |      1,361 |      2,036 |     29,098 |
+| backend                                                                                                            |         84 |     22,098 |        864 |      1,259 |     24,221 |
+| backend (Files)                                                                                                    |          2 |         57 |         14 |         22 |         93 |
+| backend\common_runtime                                                                                             |         79 |     21,713 |        788 |      1,168 |     23,669 |
+| backend\common_runtime (Files)                                                                                     |          4 |        418 |         25 |         62 |        505 |
+| backend\common_runtime\executor                                                                                    |         71 |      5,245 |        760 |      1,056 |      7,061 |
+| backend\common_runtime\executor (Files)                                                                            |         30 |      1,323 |        279 |        374 |      1,976 |
+| backend\common_runtime\executor\channel                                                                            |          3 |        143 |         41 |         20 |        204 |
+| backend\common_runtime\executor\cuda_ipc                                                                           |          9 |        878 |        133 |        151 |      1,162 |
+| backend\common_runtime\executor\samples                                                                            |          5 |        617 |         59 |        108 |        784 |
+| backend\common_runtime\executor\test                                                                               |         17 |      1,834 |        134 |        328 |      2,296 |
+| backend\common_runtime\executor\test (Files)                                                                       |         13 |      1,652 |        106 |        304 |      2,062 |
+| backend\common_runtime\executor\test\channel                                                                       |          1 |         92 |          7 |          9 |        108 |
+| backend\common_runtime\executor\test\cuda_ipc                                                                      |          1 |         74 |         11 |         10 |         95 |
+| backend\common_runtime\executor\test\utils                                                                         |          2 |         16 |         10 |          5 |         31 |
+| backend\common_runtime\executor\utils                                                                              |          7 |        450 |        114 |         75 |        639 |
+| backend\common_runtime\test                                                                                        |          4 |     16,050 |          3 |         50 |     16,103 |
+| backend\common_runtime\test (Files)                                                                                |          2 |        498 |          3 |         50 |        551 |
+| backend\common_runtime\test\plan                                                                                   |          2 |     15,552 |          0 |          0 |     15,552 |
+| backend\common_runtime\test\plan\0                                                                                 |          1 |      7,776 |          0 |          0 |      7,776 |
+| backend\common_runtime\test\plan\1                                                                                 |          1 |      7,776 |          0 |          0 |      7,776 |
+| backend\tensorflow                                                                                                 |          3 |        328 |         62 |         69 |        459 |
+| superscaler                                                                                                        |         48 |      3,603 |        497 |        777 |      4,877 |
+| superscaler\ai_simulator                                                                                           |         16 |      1,060 |        169 |        249 |      1,478 |
+| superscaler\ai_simulator (Files)                                                                                   |          2 |         56 |          2 |         33 |         91 |
+| superscaler\ai_simulator\simulator                                                                                 |         14 |      1,004 |        167 |        216 |      1,387 |
+| superscaler\ai_simulator\simulator (Files)                                                                         |          9 |        587 |        107 |        150 |        844 |
+| superscaler\ai_simulator\simulator\network_simulator                                                               |          5 |        417 |         60 |         66 |        543 |
+| superscaler\plan_gen                                                                                               |         32 |      2,543 |        328 |        528 |      3,399 |
+| superscaler\plan_gen (Files)                                                                                       |          1 |         16 |          4 |          8 |         28 |
+| superscaler\plan_gen\plan                                                                                          |         31 |      2,527 |        324 |        520 |      3,371 |
+| superscaler\plan_gen\plan (Files)                                                                                  |         12 |        840 |        136 |        187 |      1,163 |
+| superscaler\plan_gen\plan\adapter                                                                                  |          3 |        164 |         42 |         31 |        237 |
+| superscaler\plan_gen\plan\parser                                                                                   |          9 |        868 |         91 |        167 |      1,126 |
+| superscaler\plan_gen\plan\parser (Files)                                                                           |          5 |        627 |         77 |        121 |        825 |
+| superscaler\plan_gen\plan\parser\profiler                                                                          |          4 |        241 |         14 |         46 |        301 |
+| superscaler\plan_gen\plan\resources                                                                                |          7 |        655 |         55 |        135 |        845 |
++--------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                                           | language | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\Dockerfile                                | Docker   |         17 |          0 |          4 |         21 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\README.md                                 | Markdown |        121 |          0 |         67 |        188 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\channel\channel.hpp                       | C++      |         19 |         20 |          7 |         46 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\channel\cpu_channel.hpp                   | C++      |         57 |         18 |          7 |         82 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\channel\fifo.hpp                          | C++      |         67 |          3 |          6 |         76 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\config.hpp                                | C++      |          4 |          2 |          3 |          9 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\cpu_kernels.hpp                           | C++      |         34 |          2 |          7 |         43 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\cuda_ipc\channel_manager.hpp              | C++      |         73 |          2 |         11 |         86 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\cuda_ipc\cuda_channel.cpp                 | C++      |        393 |         18 |         50 |        461 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\cuda_ipc\cuda_channel.hpp                 | C++      |        135 |         84 |         36 |        255 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\cuda_ipc\cuda_channel_defs.hpp            | C++      |         14 |          2 |          4 |         20 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\cuda_ipc\cuda_ipc_internal.hpp            | C++      |        112 |          2 |         14 |        128 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\cuda_ipc\handle_manager.cpp               | C++      |         42 |          2 |          6 |         50 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\cuda_ipc\handle_manager.hpp               | C++      |         40 |         19 |          9 |         68 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\cuda_ipc\shared_block.cpp                 | C++      |         46 |          2 |         11 |         59 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\cuda_ipc\shared_block.hpp                 | C++      |         23 |          2 |         10 |         35 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\exec_ctx.hpp                              | C++      |         14 |          2 |          4 |         20 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\exec_info.cpp                             | C++      |         20 |          2 |          7 |         29 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\exec_info.hpp                             | C++      |         16 |          2 |          8 |         26 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\executor.hpp                              | C++      |         23 |         38 |          8 |         69 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\executor_pub.hpp                          | C++      |          7 |          2 |          3 |         12 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\gpu_kernels.cu                            | CUDA C++ |         73 |          2 |         15 |         90 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\gpu_kernels.hpp                           | C++      |         22 |          2 |          7 |         31 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\poll_executor.cpp                         | C++      |        141 |          5 |         29 |        175 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\poll_executor.hpp                         | C++      |         60 |         41 |         21 |        122 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\rdma_tunnel.hpp                           | C++      |         63 |          2 |          7 |         72 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\recv_task.cpp                             | C++      |         18 |          2 |          3 |         23 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\recv_task.hpp                             | C++      |         21 |          2 |          5 |         28 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\reduction_task.hpp                        | C++      |         33 |          3 |          9 |         45 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\samples\allreduce_sample.cpp              | C++      |        136 |          2 |         29 |        167 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\samples\cuda_channel.cpp                  | C++      |         94 |         17 |         10 |        121 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\samples\cuda_task.cpp                     | C++      |         81 |          3 |         15 |         99 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\samples\handle_manager.cpp                | C++      |         85 |         20 |         22 |        127 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\samples\ring_allreduce_sample.cpp         | C++      |        221 |         17 |         32 |        270 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\scale_task.hpp                            | C++      |         33 |          6 |         10 |         49 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\send_task.cpp                             | C++      |         19 |          2 |          3 |         24 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\send_task.hpp                             | C++      |         21 |          2 |          5 |         28 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\task.cpp                                  | C++      |         71 |          3 |         13 |         87 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\task.hpp                                  | C++      |         37 |         28 |         16 |         81 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\task_manager.cpp                          | C++      |         28 |          2 |          8 |         38 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\task_manager.hpp                          | C++      |         42 |         22 |         13 |         77 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\task_sched.cpp                            | C++      |        124 |         29 |         31 |        184 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\task_sched.hpp                            | C++      |         36 |         49 |         16 |        101 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\channel\test_cpu_channel.cpp         | C++      |         92 |          7 |          9 |        108 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\cuda_ipc\test_cuda_channel.cpp       | C++      |         74 |         11 |         10 |         95 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\test_poll_executor.cpp               | C++      |         96 |         13 |         22 |        131 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\test_reduction_task.cpp              | C++      |        340 |          2 |         76 |        418 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\test_ring_buffer.cpp                 | C++      |        207 |         20 |         13 |        240 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\test_scale_task.cpp                  | C++      |        227 |          2 |         54 |        283 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\test_semaphore.cpp                   | C++      |        102 |         18 |         11 |        131 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\test_send_recv_task.cpp              | C++      |         98 |          3 |         11 |        112 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\test_shared_memory.cpp               | C++      |         57 |          5 |          8 |         70 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\test_task.cpp                        | C++      |         43 |          3 |          8 |         54 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\test_task_manager.cpp                | C++      |        113 |          8 |         23 |        144 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\test_task_sched.cpp                  | C++      |        174 |         25 |         35 |        234 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\test_thread_safe_queue.cpp           | C++      |         58 |          2 |         16 |         76 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\test_worker.cpp                      | C++      |         69 |          2 |          9 |         80 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\test_worker_sched.cpp                | C++      |         68 |          3 |         18 |         89 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\utils\utils.cpp                      | C++      |         12 |          2 |          3 |         17 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\test\utils\utils.hpp                      | C++      |          4 |          8 |          2 |         14 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\utils\ring_buffer.cpp                     | C++      |         69 |          5 |         10 |         84 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\utils\ring_buffer.hpp                     | C++      |         58 |         32 |         16 |        106 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\utils\semaphore_wrapper.cpp               | C++      |        120 |         11 |         14 |        145 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\utils\semaphore_wrapper.hpp               | C++      |         28 |         26 |         10 |         64 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\utils\shared_memory.cpp                   | C++      |        106 |          9 |         10 |        125 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\utils\shared_memory.hpp                   | C++      |         20 |          9 |          6 |         35 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\utils\thread_safe_queue.hpp               | C++      |         49 |         22 |          9 |         80 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\worker.cpp                                | C++      |         77 |          3 |         13 |         93 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\worker.hpp                                | C++      |         37 |          2 |         12 |         51 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\worker_sched.cpp                          | C++      |         80 |          6 |         13 |         99 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\executor\worker_sched.hpp                          | C++      |         31 |         16 |         14 |         61 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\session.cpp                                        | C++      |        232 |         14 |         28 |        274 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\session.hpp                                        | C++      |         51 |          5 |         10 |         66 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\test\plan\0\plan.json                              | JSON     |      7,776 |          0 |          0 |      7,776 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\test\plan\1\plan.json                              | JSON     |      7,776 |          0 |          0 |      7,776 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\test\superscaler_op_test.cc                        | C++      |        329 |          2 |         22 |        353 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\test\superscaler_rt_test.cc                        | C++      |        169 |          1 |         28 |        198 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\util.cpp                                           | C++      |         64 |          4 |          8 |         76 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\common_runtime\util.hpp                                           | C++      |         71 |          2 |         16 |         89 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\superscaler_pywrap.cpp                                            | C++      |         41 |          4 |         12 |         57 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\superscaler_pywrap.hpp                                            | C++      |         16 |         10 |         10 |         36 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\tensorflow\gpu_util.hpp                                           | C++      |         58 |         34 |         16 |        108 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\tensorflow\operation.cpp                                          | C++      |        254 |         18 |         43 |        315 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\backend\tensorflow\operation.hpp                                          | C++      |         16 |         10 |         10 |         36 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\ai_simulator\README.md                                        | Markdown |         54 |          0 |         30 |         84 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\ai_simulator\__init__.py                                      | Python   |          2 |          2 |          3 |          7 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\ai_simulator\simulator\__init__.py                            | Python   |          2 |          2 |          3 |          7 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\ai_simulator\simulator\computation_device.py                  | Python   |         31 |          2 |         12 |         45 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\ai_simulator\simulator\device.py                              | Python   |         21 |         10 |          9 |         40 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\ai_simulator\simulator\device_factory.py                      | Python   |         18 |          4 |          8 |         30 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\ai_simulator\simulator\fifo_device.py                         | Python   |         20 |         10 |          8 |         38 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\ai_simulator\simulator\network_simulator\__init__.py          | Python   |          0 |          0 |          1 |          1 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\ai_simulator\simulator\network_simulator\flow.py              | Python   |         68 |          6 |         14 |         88 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\ai_simulator\simulator\network_simulator\link.py              | Python   |         46 |          4 |         13 |         63 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\ai_simulator\simulator\network_simulator\link_manager.py      | Python   |        101 |         15 |         15 |        131 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\ai_simulator\simulator\network_simulator\network_simulator.py | Python   |        202 |         35 |         23 |        260 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\ai_simulator\simulator\node.py                                | Python   |        141 |         40 |         44 |        225 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\ai_simulator\simulator\simulator.py                           | Python   |        267 |         28 |         46 |        341 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\ai_simulator\simulator\tensor.py                              | Python   |         61 |          5 |         12 |         78 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\ai_simulator\simulator\utility.py                             | Python   |         26 |          6 |          8 |         40 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\__init__.py                                          | Python   |         16 |          4 |          8 |         28 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\__init__.py                                     | Python   |          0 |          0 |          1 |          1 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\adapter\__init__.py                             | Python   |          0 |          0 |          1 |          1 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\adapter\adapter.py                              | Python   |          3 |          2 |          2 |          7 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\adapter\ai_simulator_adapter.py                 | Python   |        161 |         40 |         28 |        229 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\allreduce_plan.py                               | Python   |         73 |          7 |         15 |         95 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\node_list.py                                    | Python   |        117 |          2 |         19 |        138 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\parser\DAG_parser.py                            | Python   |          8 |          8 |          7 |         23 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\parser\__init__.py                              | Python   |          0 |          0 |          1 |          1 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\parser\import json.py                           | Python   |         39 |          4 |         14 |         57 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\parser\profiler\__init__.py                     | Python   |          0 |          0 |          1 |          1 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\parser\profiler\database_backend.py             | Python   |         67 |          8 |         19 |         94 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\parser\profiler\database_loader.py              | Python   |        139 |          2 |         17 |        158 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\parser\profiler\profiler.py                     | Python   |         35 |          4 |          9 |         48 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\parser\tf_parser.py                             | Python   |        503 |         44 |         80 |        627 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\parser\torch_parser.py                          | Python   |         77 |         21 |         19 |        117 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\plan.py                                         | Python   |         94 |          6 |         17 |        117 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\plan_generator.py                               | Python   |         53 |         14 |         18 |         85 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\plan_manager.py                                 | Python   |         29 |         12 |          8 |         49 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\plan_mapper.py                                  | Python   |         81 |         17 |         22 |        120 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\plan_pool.py                                    | Python   |         63 |          2 |         12 |         77 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\raw_allreduce_plan.py                           | Python   |          6 |          2 |          7 |         15 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\recursive_halving_plan.py                       | Python   |        153 |         35 |         33 |        221 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\reduce_broadcast_allreduce_plan.py              | Python   |         85 |         16 |         18 |        119 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\resources\__init__.py                           | Python   |          0 |          0 |          1 |          1 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\resources\hardware.py                           | Python   |        132 |          9 |         29 |        170 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\resources\link.py                               | Python   |         73 |          4 |         18 |         95 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\resources\resource.py                           | Python   |          9 |          2 |          6 |         17 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\resources\resource_pool.py                      | Python   |        221 |         17 |         39 |        277 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\resources\router.py                             | Python   |        160 |         20 |         29 |        209 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\resources\server.py                             | Python   |         60 |          3 |         13 |         76 |
+| e:\HUBOther\ML_Sys_Merak\SuperScaler\src\superscaler\plan_gen\plan\ring_allreduce_plan.py                          | Python   |         86 |         23 |         17 |        126 |
+| Total                                                                                                              |          |     25,701 |      1,361 |      2,036 |     29,098 |
++--------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

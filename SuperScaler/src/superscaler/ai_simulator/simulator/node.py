@@ -75,6 +75,7 @@ class NodeMetadata():
         # In most cases, this attribute is 0.
         # Read the first output of given node.
         # self.input_data_ids = []
+        
         # List of int. Node of dependency inputs
         self.dependency_ids = copy.deepcopy(dependency_ids)
         # List of int. Node of successor nodes depends on this node.
@@ -125,7 +126,7 @@ class Node():
         # 'executing':    Started, not finished. Only for asynchronized node.
         # 'done':       Finished.
         self.__status = NodeStatus.waiting
-        # The number of dependency
+        # The number of dependency TODO: 为什么是2者之和？这2者的关系是什么？
         self.__remain_dependency_cnt = len(metadata.input_ids) + \
             len(metadata.dependency_ids)
         # The device runtime object that this node is running on

@@ -25,10 +25,10 @@ for e in event_list:
     if e.self_cuda_time_total != 0 and e.cpu_parent is None:
         print(e.name,  e.self_cuda_time_total)
         count += 1
-
+# 计算所有事件在 CUDA 上的总时间消耗
 self_cuda_time_total = _format_time(sum([e.self_cuda_time_total for e in event_list]))
 print(self_cuda_time_total)
-print(count)
+print(count) # 打印有 CUDA 时间消耗的事件数量。
 
 # print torchprof data
 # print(prof)

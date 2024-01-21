@@ -34,13 +34,16 @@ class PlanManager(object):
         if plan is None or not isinstance(node_list, list):
             return None
         plan.reset_node_list(node_list)
-        output_plan = plan.generate_plan()
+
+        # TODO:这个generate_plan是不是被覆写了？生成的东西是什么？
+        output_plan = plan.generate_plan()  # return self.__node_list 不就返回了node_list？意义呢？
+
         # None output of generate_plan function means something goes wrong
         if output_plan is None:
             raise RuntimeError("None output of generate_plan function means something goes wrong")
             # return None
 
-        mapped_plan = self.__plan_mapper.map(output_plan)
+        mapped_plan = self.__plan_mapper.map(output_plan) # 这个map对应plan_mapper里头的map()函数，它会调用__assign_device进行设备分配
         # None output of map function means something goes wrong
         if mapped_plan is None:
             raise RuntimeError("None output of map function means something goes wrong")

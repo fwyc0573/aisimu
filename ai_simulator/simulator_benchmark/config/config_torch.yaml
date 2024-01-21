@@ -67,6 +67,8 @@ tasks:
    #      database_path:
    #         './data/torch/database/densenet201_db.json'
 
+
+    # TODO: what is the difference between graph_path and graph_path_multi_gpu?
     resnet50:
         graph_path:
            './data/torch/graphs/resnet50.json'

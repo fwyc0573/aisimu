@@ -1,3 +1,4 @@
+# TODO: what is the propogation latency? how to get it? what's dest in links means?
 Server:
     hostname0:
         CPU:

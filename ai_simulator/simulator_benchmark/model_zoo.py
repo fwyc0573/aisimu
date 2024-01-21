@@ -23,9 +23,9 @@ class ModelZoo():
             raise ValueError("platform is invalid")
 
         if config['platform'] == 'tensorflow':
-            from superscaler.plan_gen import TFParser as Parser
+            from SuperScaler.src.superscaler.plan_gen import TFParser as Parser
         elif config['platform'] == 'pytorch' or config['platform'] == 'torch':
-            from superscaler.plan_gen import TorchParser as Parser
+            from SuperScaler.src.superscaler.plan_gen import TorchParser as Parser
         else:
             raise ValueError("platform is invalid")
 
@@ -47,6 +47,7 @@ class ModelZoo():
         else:
             self.__baseline = {}
 
+        # read the info from nccl log
         for c, gpu in config['enviroments'].items():
             self.__nccl_dataset[gpu] = {}
             nccl_path = config['nccl_path'] + 'nccl_' + str(gpu) + '.log'
@@ -56,6 +57,7 @@ class ModelZoo():
                         data = line.split()
                         self.__nccl_dataset[gpu][int(data[1])] = float(data[-4])
 
+        # read the info from config (最外头的yaml，不是ai_simulator的yaml)
         for model in config['tasks']:
             if model in self.__models:
                 raise ValueError("Idential tasks \"{}\" are simulated twice".format(task))
@@ -92,6 +94,8 @@ class ModelZoo():
                     raise ValueError("Task \"{}\" are ininlized without database_path".format(task))
                 else:
                     self.set_database_path(model, task['database_path'])
+
+
 
     def exist_model(self, model):
         if model in self.__models:

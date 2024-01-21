@@ -27,9 +27,9 @@ class TorchDatabase(torch.fx.Interpreter):
         timer = Timer(100, 'resnet50')
 
         g = TorchDatabase(module, example, 'resnet50', 100)
-        print(g._forward_database)
-        print(g._backward_database)
-        print(g._optimizer_database)
+        print(g._forward_database) 
+        print(g._backward_database) 
+        print(g._optimizer_database) 
     """
     def __init__(self, module: torch.nn.Module, example: torch.tensor, name: str, timer: Timer, optimizer: Optimizer):
         self.module = module
@@ -65,13 +65,14 @@ class TorchDatabase(torch.fx.Interpreter):
         self._forward_variance = {}
         self._backward_variance = {}
         self._optimizer_variance = {}
-        self._overall_variance = {}
+        self._overall_variance = {} 
         
         self._get_fp_node_time()
         del self.env
         self._get_bp_node_time()
         self._get_optimizer_node_time()
 
+    
     def _fp_node_run(self, node: torch.fx.node.Node, *args):
         self.args_iter : Iterator[Any] = iter(args)
 
@@ -100,7 +101,7 @@ class TorchDatabase(torch.fx.Interpreter):
         self._forward_database = self.timer._get_database()
         self._forward_variance = self.timer._get_variance()
         
-
+    # 捕获每个节点的前向传播运行时间
     def _get_fp_node_time(self, initial_env = None):
         self.env = initial_env if initial_env else {}
         self.attr = {}
@@ -118,6 +119,7 @@ class TorchDatabase(torch.fx.Interpreter):
 
         # self.timer._call_function_profile(self.module, self.example)
 
+    # 捕获后向传播运行时间  
     def _get_bp_node_time(self):
         # self.timer._init_database()
         if isinstance(self.module, PreTrainedModel):
@@ -144,6 +146,7 @@ class TorchDatabase(torch.fx.Interpreter):
     #     self._backward_database = {}
     #     self._backward_variance = {}
 
+    # 捕获优化器操作的运行时间
     def _get_optimizer_node_time(self):
         self.timer._init_database()
         self.timer._call_optimizer(self.optimizer.zero_grad, "optimizer_zero")
@@ -151,10 +154,12 @@ class TorchDatabase(torch.fx.Interpreter):
         self._optimizer_database = self.timer.database
         self._optimizer_variance = self.timer._get_variance()
 
+    # 将前向、后向和优化器的性能数据合并。
     def _get_overall_database(self):
         self._overall_database = {**self._forward_database, **self._backward_database, **self._optimizer_database}
         return self._overall_database
 
+    # 收集并返回性能数据的方差。
     def _get_overall_variance(self):
         self._overall_variance = {**self._forward_variance, **self._backward_variance, **self._optimizer_variance}
         return self._overall_variance

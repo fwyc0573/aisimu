@@ -1,3 +1,5 @@
+# 对分布式训练环境中的模型执行性能分析。脚本使用 PyTorch 提供的性能分析工具来收集和记录模型训练步骤中的CUDA时间。
+# 分析结果将以 CSV 和 JSON 格式保存。
 import json
 import torch
 import torchvision
@@ -8,6 +10,7 @@ import argparse
 import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.autograd.profiler_util import (_format_time, EventList, FunctionEvent, FunctionEventAvg)
+import pandas as pd
 
 # from transformers import BertModel, BertConfig
 
@@ -26,7 +29,7 @@ parser.add_argument("--repeat", default=20, type=int)
 parser.add_argument('--model', type=str, default='resnet50',
                     help='model to benchmark')
 parser.add_argument('--bucket_cap_mb', type=int, default=25,
-                    help='ddp bucket_cap_mb')
+                    help='ddp bucket_cap_mb') # DDP中梯度桶的大小
 FLAGS = parser.parse_args()
 local_rank = FLAGS.local_rank
 bucket_cap_mb = FLAGS.bucket_cap_mb
@@ -41,25 +44,21 @@ dist.init_process_group(backend='nccl')  # nccl是GPU设备上最快、最推荐
 # optimizer = optim.SGD(module.parameters(), lr=0.01)
 
 from torchvision import models
-
+# 加载了指定的模型（例如ResNet50），创建了随机数据作为输入，以及设置了用于训练的优化器（这里使用了随机梯度下降SGD）
 model = getattr(models, FLAGS.model)().cuda()
 example = torch.rand(32, 3, 224, 224).cuda()
 optimizer = optim.SGD(model.parameters(), lr=0.01)
 
 module = DDP(model, device_ids=[local_rank], output_device=local_rank)
-
+# 使用 torch.autograd.profiler 捕获和分析模型的性能数据。分析期间收集的信息包括 CUDA 调用的时间和其他详细事件数据。
 from torch.autograd.profiler_util import (_format_time, EventList, FunctionEvent, FunctionEventAvg)
-
 import torch.autograd.profiler as torch_profiler
 
 model = torchvision.models.resnet152(pretrained=False).cuda()
 x = torch.rand([32, 3, 224, 224]).cuda()
 
-
-import pandas as pd
-
 results = {}
-
+# 进行两轮迭代，每轮五次前向和后向传播，但只在第二轮中进行性能分析，以避免预热阶段的性能数据影响。
 for i in range(2):
     for j in range(5):
         y = module(example)
@@ -94,7 +93,7 @@ for i in range(2):
     # print(count)
 # print(results)
 df = pd.DataFrame(results)
-df.to_csv('log' + str(local_rank) + '.csv')
+df.to_csv('log' + str(local_rank) + '.csv') # 输出文件为log1.csv
 result = []
 for e in event_list:
     if e.self_cuda_time_total != 0:
@@ -103,5 +102,5 @@ for e in event_list:
 
 # for result in results:
 #     print(result)
-json.dump(results, open('event' + str(FLAGS.local_rank) + '.json', 'w'), indent=4)
 
+json.dump(results, open('event' + str(FLAGS.local_rank) + '.json', 'w'), indent=4) # 输出文件为event-1.json

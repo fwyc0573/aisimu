@@ -84,12 +84,13 @@ op_command = 'python3 \
     --batchsize {} \
     --type {}'
 
-
+# 运行nccl测试，测量不同环境配置下的通信性能。
 def nccl_test(args, config):
     for _, value in config['enviroments'].items():
         cmd = nccl_meta_command.format(value, value)
         os.system(cmd)
-
+        
+# 运行基准测试，测量不同环境配置下的模型性能(ddp_profile.py)
 def baseline_test(args, config):
     for model in args.model_list:
         print(model, args.model_list)
@@ -103,6 +104,7 @@ def baseline_test(args, config):
     args.model_zoo.dump_baseline()
     print(args.model_zoo.get_baseline())
 
+# 运行graph测试，可能用于生成和验证模型图的正确性(torch_graph_test.py)
 def TorchGraph_test(args, config):
     for model in args.model_list:
         cmd = graph_command.format(args.model_zoo.get_sub_models(model),
@@ -126,6 +128,7 @@ def TorchGraph_test(args, config):
     #     del(module)
     #     del(g)
 
+# 运行ddpgraph测试(ddp_test.py)
 def ddpgraph_test(args, config):
     for model in args.model_list:
         cmd = ddp_graph_command.format(args.model_zoo.get_sub_models(model),
@@ -135,6 +138,7 @@ def ddpgraph_test(args, config):
         print(cmd)
         os.system(cmd)
 
+# 运行单个操作性能测试(torch_dataset_test.py)
 def op_test(args, config):
     for model in args.model_list:
         print('op_test + ',model)

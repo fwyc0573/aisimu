@@ -1,0 +1,46 @@
+Date : 2023-10-08 21:09:15
+Directory : e:\HUBOther\ML_Sys_Merak\TorchGraph
+Total : 19 files,  1954 codes, 256 comments, 498 blanks, all 2708 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Python   |         18 |      1,923 |        256 |        483 |      2,662 |
+| Markdown |          1 |         31 |          0 |         15 |         46 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                           | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                              |         19 |      1,954 |        256 |        498 |      2,708 |
+| . (Files)                                                      |         18 |      1,919 |        242 |        489 |      2,650 |
+| transformer                                                    |          1 |         35 |         14 |          9 |         58 |
++----------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                       | language | code       | comment    | blank      | total      |
++----------------------------------------------------------------+----------+------------+------------+------------+------------+
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\DDP_graph.py               | Python   |        140 |         20 |         35 |        195 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\DDP_test.py                | Python   |         20 |         15 |         11 |         46 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\DDP_torch_database.py      | Python   |          4 |          0 |          1 |          5 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\DDP_torch_database_test.py | Python   |         17 |         20 |          9 |         46 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\Node.py                    | Python   |         75 |          0 |         19 |         94 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\README.md                  | Markdown |         31 |          0 |         15 |         46 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\ref.py                     | Python   |        357 |          7 |         81 |        445 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\shape_prop.py              | Python   |         56 |         60 |         20 |        136 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\timer copy 2.py            | Python   |         93 |         15 |         30 |        138 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\timer copy.py              | Python   |        128 |         15 |         31 |        174 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\timer.py                   | Python   |        140 |         15 |         34 |        189 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\tmp.py                     | Python   |        317 |         12 |         68 |        397 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\torch_database.py          | Python   |        105 |         27 |         30 |        162 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\torch_database_test.py     | Python   |         24 |          3 |          7 |         34 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\torch_graph.py             | Python   |        331 |         14 |         72 |        417 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\torch_graph_test.py        | Python   |         17 |          2 |          7 |         26 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\torch_real.py              | Python   |         39 |         16 |         14 |         69 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\transformer\gpt2.py        | Python   |         35 |         14 |          9 |         58 |
+| e:\HUBOther\ML_Sys_Merak\TorchGraph\typename.py                | Python   |         25 |          1 |          5 |         31 |
+| Total                                                          |          |      1,954 |        256 |        498 |      2,708 |
++----------------------------------------------------------------+----------+------------+------------+------------+------------+

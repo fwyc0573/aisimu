@@ -38,8 +38,10 @@ elif args.type == 'NLP':
     example = (torch.LongTensor(args.batchsize,512).random_() % 1000).cuda()
     optimizer = optim.SGD(module.parameters(), lr=0.01)
 
+# 使用 TorchDatabase 类来收集关于模型前向传播、后向传播和优化器的性能数据。
 g = TorchDatabase(module, example, model, timer, optimizer)
 db = (g._get_overall_database())
+
 json.dump(db,
             open(args.path, 'w'),
             indent=4)
