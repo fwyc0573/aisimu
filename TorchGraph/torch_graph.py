@@ -3,7 +3,8 @@ import torch
 import torch.fx
 from torch.fx.node import Node, map_aggregate
 from torch.fx import symbolic_trace
-from .shape_prop import ShapeProp, TensorMetadata, extract_tensor_metadata
+# from .shape_prop import ShapeProp, TensorMetadata, extract_tensor_metadata
+from TorchGraph.shape_prop import ShapeProp, TensorMetadata, extract_tensor_metadata
 from .typename import typename
 from . import Node
 import sys

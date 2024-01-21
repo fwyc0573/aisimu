@@ -3,11 +3,11 @@
 
 import yaml
 
-from superscaler.plan_gen.plan.resources.hardware import CPUHardware,\
+from SuperScaler.src.superscaler.plan_gen.plan.resources.hardware import CPUHardware,\
     GPUHardware, NetworkSwitchHardware
-from superscaler.plan_gen.plan.resources.server import Server
-from superscaler.plan_gen.plan.resources.link import PCIE, RDMA
-from superscaler.plan_gen.plan.resources.router import Router
+from SuperScaler.src.superscaler.plan_gen.plan.resources.server import Server
+from SuperScaler.src.superscaler.plan_gen.plan.resources.link import PCIE, RDMA
+from SuperScaler.src.superscaler.plan_gen.plan.resources.router import Router
 
 
 class ResourcePool():

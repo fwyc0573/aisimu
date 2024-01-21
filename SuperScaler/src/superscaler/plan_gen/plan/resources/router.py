@@ -3,7 +3,7 @@
 
 import copy
 
-from superscaler.plan_gen.plan.resources.hardware import Hardware,\
+from SuperScaler.src.superscaler.plan_gen.plan.resources.hardware import Hardware,\
     ComputationHardware
 
 

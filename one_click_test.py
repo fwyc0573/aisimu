@@ -1,15 +1,15 @@
 import os
-import json
+# import json
 import argparse
 import yaml
-import torch
-import torch.optim as optim
+# import torch
+# import torch.optim as optim
 from TorchGraph.torch_graph import TorchGraph
 from TorchGraph.DDP_graph import DDPGraph
 from TorchGraph.torch_database import TorchDatabase
 from TorchGraph.timer import Timer
-from torchvision import models
-import transformer
+# from torchvision import models
+# import transformer
 from ai_simulator.simulator_benchmark.model_zoo import ModelZoo
 from ai_simulator.simulator_benchmark.benchmark_tools import BenchmarkTools
 
@@ -210,7 +210,8 @@ if __name__ == '__main__':
     print(model_list)
     print(config)
 
-    one_click_test(args, config)
+
+    # one_click_test(args, config)
 
     # benchmarktools = BenchmarkTools(args.model_list,
     #                                 args.model_zoo,

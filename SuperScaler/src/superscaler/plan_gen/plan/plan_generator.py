@@ -13,13 +13,13 @@ v0.1 supported function:
 Introduce import package.
 '''
 
-from superscaler.plan_gen.plan.plan_mapper import GPURoundRobinMapper
-from superscaler.plan_gen.plan.plan_pool import PlanPool
-from superscaler.plan_gen.plan.ring_allreduce_plan import RingAllreducePlan
-from superscaler.plan_gen.plan.raw_allreduce_plan import RawAllreducePlan
-from superscaler.plan_gen.plan.reduce_broadcast_allreduce_plan import \
+from SuperScaler.src.superscaler.plan_gen.plan.plan_mapper import GPURoundRobinMapper
+from SuperScaler.src.superscaler.plan_gen.plan.plan_pool import PlanPool
+from SuperScaler.src.superscaler.plan_gen.plan.ring_allreduce_plan import RingAllreducePlan
+from SuperScaler.src.superscaler.plan_gen.plan.raw_allreduce_plan import RawAllreducePlan
+from SuperScaler.src.superscaler.plan_gen.plan.reduce_broadcast_allreduce_plan import \
      ReduceBroadcastAllreducePlan
-from superscaler.plan_gen.plan.plan_manager import PlanManager
+from SuperScaler.src.superscaler.plan_gen.plan.plan_manager import PlanManager
 
 
 class PlanGenerator():

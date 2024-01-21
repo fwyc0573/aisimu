@@ -2,8 +2,8 @@
 # Licensed under the MIT License.
 
 import copy
-from superscaler.plan_gen.plan.plan import Plan
-from superscaler.plan_gen.plan.node_list import NodeList
+from SuperScaler.src.superscaler.plan_gen.plan.plan import Plan
+from SuperScaler.src.superscaler.plan_gen.plan.node_list import NodeList
 
 
 class AllreducePlan(Plan):

@@ -3,8 +3,8 @@
 
 import abc
 import copy
-from superscaler.plan_gen.plan.node_list import NodeList
-from superscaler.plan_gen.plan.resources.resource_pool import ResourcePool
+from SuperScaler.src.superscaler.plan_gen.plan.node_list import NodeList
+from SuperScaler.src.superscaler.plan_gen.plan.resources.resource_pool import ResourcePool
 
 
 class PlanMapper(abc.ABC):
