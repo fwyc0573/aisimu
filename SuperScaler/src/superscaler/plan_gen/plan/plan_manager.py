@@ -10,7 +10,6 @@ class PlanManager(object):
         plan_pool and plan_mapper
     """
     def __init__(self, plan_pool, plan_mapper):
-
         if not isinstance(plan_pool, PlanPool):
             raise ValueError("Input plan_pool must be PlanPool instance")
         if not isinstance(plan_mapper, PlanMapper):
@@ -35,8 +34,7 @@ class PlanManager(object):
             return None
         plan.reset_node_list(node_list)
 
-        # TODO:这个generate_plan是不是被覆写了？生成的东西是什么？
-        output_plan = plan.generate_plan()  # return self.__node_list 不就返回了node_list？意义呢？
+        output_plan = plan.generate_plan()
 
         # None output of generate_plan function means something goes wrong
         if output_plan is None:

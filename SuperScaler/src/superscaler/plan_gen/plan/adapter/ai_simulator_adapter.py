@@ -101,7 +101,8 @@ class AISimulatorAdapter(Adapter):
             return True
 
     def __create_index_dependency(self):
-        '''
+        '''DAG
+        
         convert input name dependency into index dependency,
         return False if failed
         '''
@@ -134,6 +135,7 @@ class AISimulatorAdapter(Adapter):
             node_book[(name, device)] = index
 
             # Record generated nodes on parent_book
+            # TODO：该属性是不是和dependency重叠了？暂未涉及
             if 'parent' in node:
                 parent = node['parent']
                 if (parent, device) not in parent_book:
@@ -164,6 +166,7 @@ class AISimulatorAdapter(Adapter):
 
         # Generate related id for each generated node
         # eg. Send <-> Recv
+        # TODO: 现阶段DDP单GPU没有涉及'related_id'；related_id指的是跨GPU的传输？（不涉及NCCL通信的op）
         for node in self.__plan:
             if 'related_op' in node:
                 related_op = node['related_op']
@@ -172,16 +175,17 @@ class AISimulatorAdapter(Adapter):
                     return False
                 node['related_id'] = node_book[(related_op, target)]
                 node.pop('related_op')
+                raise 0
 
         # Generate successor ids for each node from input_ids
         for node in self.__plan:
             node['successor_ids'] = []
-
         for node in self.__plan:
             for input_id in node['input_ids']:
                 self.__plan[input_id]['successor_ids'].append(node['index'])
 
         # Generate dependency_ids for each node
+        # TODO:暂未涉及
         for node in self.__plan:
             # dependency_ids: argument for Recv node to point Send node
             # For other nodes the dependency_ids is empty list

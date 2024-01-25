@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-from SuperScaler.src.superscaler.plan_gen.plan.allreduce_plan import AllreducePlan
+from superscaler.plan_gen.plan.allreduce_plan import AllreducePlan
 
 
 class RawAllreducePlan(AllreducePlan):

@@ -77,22 +77,24 @@ class TorchParser(DAGParser):
         else:
             return fake_time
 
+
     def extract_attrs(self, node, device, gpu):
         # print(node)
         if 'attrs' in node:
             attrs = node['attrs']
         else:
             attrs = {}
-        attrs['name'] = node['name']
-        attrs['op'] = node['op']
-        attrs['input'] = node['input_nodes']
-        attrs['device'] = device
-        attrs['tensor_type'] = node['output_types']
-        attrs['output_shape'] = node['output_shapes']
+        attrs['name'] = node['name'] # "matmul_30"
+        attrs['op'] = node['op'] # "torch.matmul"
+        attrs['input'] = node['input_nodes'] # ["permute_62", "transpose_15"]
+        attrs['device'] = device 
+        attrs['tensor_type'] = node['output_types'] # ["torch.float32"]
+        attrs['output_shape'] = node['output_shapes'] # [[4,16,512,512]]
 
         # TODO add Pytorch database
-        # TODO: 什么是execution_time？record里头记录了所有excution时间？对应paper哪一步？
         execution_time = self.__Profiler.get_execution_time_by_key(node['name'])
+
+        # database中没有记录，使用fake time
         if execution_time is None:
             attrs['execution_time'] = self.generate_fake_execution_time(attrs, gpu)
             # attrs['execution_time'] = lower_time + (higher_time - lower_time) / (higher_size - lower_size) * (bucket_size - lower_size)
@@ -108,12 +110,15 @@ class TorchParser(DAGParser):
         Return the node_list that contains all parsed nodes
         graph_paths: path to onnx DAG
         '''
-
+        # print(f"->torch_parser | graph = {graph}")
         self.torch_graph = json.load(open(graph))
+        # print(f"->torch_parser | self.torch_graph = {self.torch_graph}")
+
         node_list = []
         for node in self.torch_graph:
-            # 加入节点，每个node有一堆自己的属性
             node_list.append(self.extract_attrs(node, device, gpu))
-
+            # node_list = [{'name': 'input_ids', 'op': 'input_ids', 'input': ['optimizer_zero'], 
+            # 'device': 'device_0', 'tensor_type': ['torch.int64'], 'output_shape': [[16, 512]], 'execution_time': 0}]
+            
         return node_list
 

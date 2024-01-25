@@ -202,21 +202,20 @@ if __name__ == '__main__':
         config = yaml.load(f, Loader=yaml.FullLoader)
 
     model_zoo = ModelZoo(config)
+    model_zoo.get_attributes() # print
+
     args.model_zoo = model_zoo
 
     model_list = model_zoo.get_model_list()
     args.model_list = model_list
-
-    print(model_list)
-    print(config)
-
+    print(f"model_list -> {model_list}")
 
     # one_click_test(args, config)
 
-    # benchmarktools = BenchmarkTools(args.model_list,
-    #                                 args.model_zoo,
-    #                                 args.skip_coverage,
-    #                                 args.skip_accuracy,
-    #                                 config)
-    # benchmarktools.run()
+    benchmarktools = BenchmarkTools(args.model_list,
+                                    args.model_zoo,
+                                    args.skip_coverage,
+                                    args.skip_accuracy,
+                                    config)
+    benchmarktools.run()
 

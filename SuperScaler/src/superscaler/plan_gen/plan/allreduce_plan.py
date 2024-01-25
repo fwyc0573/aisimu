@@ -2,8 +2,8 @@
 # Licensed under the MIT License.
 
 import copy
-from SuperScaler.src.superscaler.plan_gen.plan.plan import Plan
-from SuperScaler.src.superscaler.plan_gen.plan.node_list import NodeList
+from superscaler.plan_gen.plan.plan import Plan
+from superscaler.plan_gen.plan.node_list import NodeList
 
 
 class AllreducePlan(Plan):
@@ -39,7 +39,7 @@ class AllreducePlan(Plan):
         allreduce_node_list, endpoints = self.find_all_allreduce_nodes(
             node_list_ref, output_node_list)
 
-        index = 0
+        # TODO: 这里是不是冗余了？def find_all_allreduce_nodes中已经筛完了？
         for node in allreduce_node_list:
             if node.op == self.get_plan_type():
                 key = node.op

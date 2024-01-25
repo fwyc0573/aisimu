@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-from SuperScaler.src.superscaler.plan_gen.plan.plan import Plan
+from superscaler.plan_gen.plan.plan import Plan
 
 
 class PlanPool(object):

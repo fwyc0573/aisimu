@@ -13,13 +13,13 @@ v0.1 supported function:
 Introduce import package.
 '''
 
-from SuperScaler.src.superscaler.plan_gen.plan.plan_mapper import GPURoundRobinMapper
-from SuperScaler.src.superscaler.plan_gen.plan.plan_pool import PlanPool
-from SuperScaler.src.superscaler.plan_gen.plan.ring_allreduce_plan import RingAllreducePlan
-from SuperScaler.src.superscaler.plan_gen.plan.raw_allreduce_plan import RawAllreducePlan
-from SuperScaler.src.superscaler.plan_gen.plan.reduce_broadcast_allreduce_plan import \
+from superscaler.plan_gen.plan.plan_mapper import GPURoundRobinMapper
+from superscaler.plan_gen.plan.plan_pool import PlanPool
+from superscaler.plan_gen.plan.ring_allreduce_plan import RingAllreducePlan
+from superscaler.plan_gen.plan.raw_allreduce_plan import RawAllreducePlan
+from superscaler.plan_gen.plan.reduce_broadcast_allreduce_plan import \
      ReduceBroadcastAllreducePlan
-from SuperScaler.src.superscaler.plan_gen.plan.plan_manager import PlanManager
+from superscaler.plan_gen.plan.plan_manager import PlanManager
 
 
 class PlanGenerator():
@@ -31,19 +31,18 @@ class PlanGenerator():
             resource_pool: a ResourcePool class containing device info and
                 router info
         '''
-
-        # Init resource_pool
         self.__resource_pool = resource_pool
-        # Init nodelist
         self.__nodelist = nodelist
-        # Init PlanPool
+
+        # RingAllreducePlan用于挑选在parser中挑选出的allreduce节点
+        # TODO: 除了ring以外其他plan_name是什么作用？
         self.__plan_pool = PlanPool()
         self.__plan_pool.add_plan(RingAllreducePlan(plan_name='ring'))
         self.__plan_pool.add_plan(RawAllreducePlan(plan_name='raw'))
         self.__plan_pool.add_plan(
             ReduceBroadcastAllreducePlan(plan_name='ReduceBroadcast'))
-        # Init plan mapper
-        # TODO Introduce mapping plan here
+        
+        # mapping planned device to real GPU（当前DDP只涉及一个device，对应唯一一个GPU）
         self.__mapper = GPURoundRobinMapper(resource_pool)
         # Init PlanManager by PlanPool and PlanMapper
         self.__planmanager = PlanManager(self.__plan_pool, self.__mapper)

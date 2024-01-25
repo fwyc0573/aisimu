@@ -3,8 +3,8 @@
 
 import abc
 import copy
-from SuperScaler.src.superscaler.plan_gen.plan.node_list import NodeList
-from SuperScaler.src.superscaler.plan_gen.plan.resources.resource_pool import ResourcePool
+from superscaler.plan_gen.plan.node_list import NodeList
+from superscaler.plan_gen.plan.resources.resource_pool import ResourcePool
 
 
 class PlanMapper(abc.ABC):
@@ -81,26 +81,32 @@ class GPURoundRobinMapper(PlanMapper):
         if len(self.__gpus) < 1:
             # Resource Pool is empty
             raise RuntimeError("Resource Pool is empty")
-            return False
-        # TODO:1个设备对应1个GPU吗，为什么？
+        
+        # devices是虚拟设备（计划设备）；在DDP中，每个记录的trace一般是一个GPU内发生的，因此原工程涉及的devices的len()全部为1
+        # 即将计算任务分配到一个GPU上，符合DDP逻辑
         if len(self.__gpus) < len(devices):
             # GPU count in resource_pool can't meet the requirement
             raise RuntimeError("GPU count in resource_pool can't meet the requirement")
-            return False
 
         # Assign devices by RoundRobin order
         for node in node_list:
-            src_gpu = None
-            dst_gpu = None
-            # print(node.device)
+            src_gpu, dst_gpu = None, None
+    
             # Assign device
             if node.device is not None:
                 src_gpu = self.__gpus[devices.index(node.device)]
-                node.device = src_gpu.get_name()
+                node.device = src_gpu.get_name()  # DDP的话，都在一个GPU上，例如'/server/hostname0/GPU/0'
+            
+            '''现阶段下文2个部分都没涉及，即task graph中node.target都是None。
+            
+                ∵ DDP中的single world处理的是一样的，不需要跨GPU。
+            
+            '''
             # Assign target
             if node.target is not None:
                 dst_gpu = self.__gpus[devices.index(node.target)]
                 node.target = dst_gpu.get_name()
+                raise 0
             # Assign route
             if node.device is not None and node.target is not None:
                 node.route_index = 0
@@ -111,12 +117,11 @@ class GPURoundRobinMapper(PlanMapper):
                 if not route_path:
                     self._reset_route_info()
                     raise RuntimeError("No route found between src_gpu and dst_gpu")
-                    return False
-
+                print(f"route_path -> {route_path}")
                 route_path = route_path[0]
                 node.route_type = route_path[1]
 
                 self._update_route_info(
                     src_gpu.get_name(), dst_gpu.get_name(), node.route_index, route_path[0])
-
+                raise 0
         return True

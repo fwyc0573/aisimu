@@ -12,11 +12,9 @@ from statistics import mean
 #     AISimulatorAdapter
 # from superscaler.ai_simulator import Simulator
 
-from SuperScaler.src.superscaler.plan_gen import ResourcePool, PlanGenerator, \
+from superscaler.plan_gen import ResourcePool, PlanGenerator, \
     AISimulatorAdapter
-from SuperScaler.src.superscaler.ai_simulator import Simulator
-
-
+from superscaler.ai_simulator import Simulator
 
 
 class BenchmarkTools():
@@ -44,22 +42,19 @@ class BenchmarkTools():
             self.check_coverage()
 
     def init_simulator(self, node_list, rp):
-        '''init a simulator from nodelist
+        '''plan_generator
+
+        self.__mapper = GPURoundRobinMapper(resource_pool)
+        self.__planmanager = PlanManager(self.__plan_pool, self.__mapper)
+        确定plan devices 和 real GPU的映射方式（例如轮询，目前DDP模式只有一个device只mapping一个GPU）
+        确定plan的类型（例如ring，raw，reduce_broadcast）
         '''
-
-        # -----------------step 1-----------------
-        # Init the PlanGenerator；这个对应的是论文中的初始化训练结构的Graph Constructor？
-        # Training Script -> node_list 
-        # Configurations -> rp 
         plan_generator = PlanGenerator(node_list, rp)
-
-        # get plan, links, routing and devices info from plan_gen
         mapped_plan = plan_generator.get_execution_plan('Allreduce', 'ring').to_json()  # noqa: E501
         links_info = plan_generator.get_links_info()
-        routing_info = plan_generator.get_routing_info()
+        routing_info = plan_generator.get_routing_info() # 暂时都在/GPU/0里头，所以该dict为empty
         compu_device_spec = plan_generator.get_device_info()
 
-        # -----------------step 2-----------------
         adapter = AISimulatorAdapter()
         assert adapter.set_plan(mapped_plan) is True
         sim_nodes_list = adapter.get_plan()
@@ -110,10 +105,12 @@ class BenchmarkTools():
         return parser
 
     def get_node_list(self, model, gpu):
-        graph_path = self.get_graph_path(model, gpu)
-        parser = self.get_parser(model)
-        nodelist = parser.parse_graph(graph_path, gpu=gpu)
+        graph_path = self.get_graph_path(model, gpu) # ai_simulator/simulator_benchmark/data/torch/graphs/bert_large_b16.json
+        parser = self.get_parser(model) # 1
+        # TODO： 没有区分device是GPU还是CPU，皆默认是device_0（压根没有传入device参数）
+        nodelist = parser.parse_graph(graph_path, gpu=gpu) # def parse_graph(self, graph, device="device_0", gpu = 1)
 
+        # TODO： 以下目前没作用
         new_nodelist = []
         for device_num in range(1):
             for i in nodelist:
@@ -124,8 +121,22 @@ class BenchmarkTools():
                 else:
                     item['device'] = 'device_' + str(device_num)
                 new_nodelist.append(item)
-
+        # judge = self.compare_nodelists(nodelist, new_nodelist)
+        # print(f"compare_nodelists = {judge}")
+        # raise 0
         return new_nodelist
+
+
+    def compare_nodelists(self, nodelist, new_nodelist):
+        if len(nodelist) != len(new_nodelist):
+            return False
+
+        for i in range(len(nodelist)):
+            if nodelist[i] != new_nodelist[i]:
+                return False
+
+        return True
+    
 
     def check_model_accuracy(self, model, gpu):
         '''return the total time use of a model in simulator

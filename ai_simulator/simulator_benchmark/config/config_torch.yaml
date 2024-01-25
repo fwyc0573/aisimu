@@ -15,11 +15,12 @@ platform:
     'pytorch'
 
 baseline_path:
-    'data/torch/baseline.json'
+    './data/torch/baseline.json'
+    # 'data/torch/baseline.json'
 
 resource_pool_path:
-    'data/resource_pool.yaml'
-
+    './data/resource_pool.yaml'
+    # 'data/resource_pool.yaml'
 tasks:
 
    #  vgg11:

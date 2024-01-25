@@ -5,6 +5,7 @@ import argparse
 import yaml
 from model_zoo import ModelZoo
 from benchmark_tools import BenchmarkTools
+import os
 
 # set up the parser
 parser = argparse.ArgumentParser(
@@ -20,9 +21,25 @@ parser.add_argument('--skip-accuracy',
                     dest='skip_accuracy', action='store_true',
                     help='skip testting the simulator accuracy')
 
+# parser.add_argument('-c', '--config_path',
+#                     dest='config', default='config/config.yaml',
+#                     help='config setting.')
+# parser.add_argument('-c', '--config_path',
+#                     dest='config', default='./config/config_torch.yaml',
+#                     help='config setting.')
+
+# 获取当前脚本的绝对路径
+script_path = os.path.abspath(__file__)
+# 获取当前脚本所在目录的路径
+script_dir = os.path.dirname(script_path)
+# 构建config文件的绝对路径
+config_path = os.path.join(script_dir, 'config', 'config_torch.yaml')
+
 parser.add_argument('-c', '--config_path',
-                    dest='config', default='config/config.yaml',
+                    dest='config', default=config_path,
                     help='config setting.')
+
+
 
 
 if __name__ == '__main__':

@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 import humanreadable as hr
-from SuperScaler.src.superscaler.plan_gen.plan.resources.resource import Resource
+from superscaler.plan_gen.plan.resources.resource import Resource
 
 
 class Link(Resource):

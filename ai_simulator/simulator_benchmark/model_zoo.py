@@ -23,9 +23,9 @@ class ModelZoo():
             raise ValueError("platform is invalid")
 
         if config['platform'] == 'tensorflow':
-            from SuperScaler.src.superscaler.plan_gen import TFParser as Parser
+            from superscaler.plan_gen import TFParser as Parser
         elif config['platform'] == 'pytorch' or config['platform'] == 'torch':
-            from SuperScaler.src.superscaler.plan_gen import TorchParser as Parser
+            from superscaler.plan_gen import TorchParser as Parser
         else:
             raise ValueError("platform is invalid")
 
@@ -37,27 +37,31 @@ class ModelZoo():
         self.__sub_models = {}
         self.__types = {}
         self.__batch_sizes = {}
-        self.__graph_path = {}
+        self.__graph_path = {} # op and size info -> ai_simulator/simulator_benchmark/data/torch/graphs/bert_large_b16.json
         self.__graph_path_multi_gpu = {}
-        self.__database_path = {}
-        self.__nccl_dataset = {}
+        self.__database_path = {} # time consumed -> ai_simulator/simulator_benchmark/data/torch/database/bert_large_b16_db.json
+        self.__nccl_dataset = {} # nccl_1.log文件中（key代表几个GPU）对应的count和sum
 
         if 'baseline_path' in config:
-            self.__baseline = json.load((open(config['baseline_path'])))
+            self.__baseline = json.load((open(config['baseline_path'])))  # 不同数量级GPU的不同模型的基准时间
         else:
             self.__baseline = {}
 
+        print("-----------------------------------------------")
         # read the info from nccl log
         for c, gpu in config['enviroments'].items():
             self.__nccl_dataset[gpu] = {}
             nccl_path = config['nccl_path'] + 'nccl_' + str(gpu) + '.log'
+            print(f"nccl_path -> {nccl_path}")
             with open(nccl_path, 'r') as f:
                 for line in f:
                     if 'sum' in line:
                         data = line.split()
                         self.__nccl_dataset[gpu][int(data[1])] = float(data[-4])
+        print("-----------------------------------------------")
 
-        # read the info from config (最外头的yaml，不是ai_simulator的yaml)
+
+        # check the info from config
         for model in config['tasks']:
             if model in self.__models:
                 raise ValueError("Idential tasks \"{}\" are simulated twice".format(task))
@@ -95,7 +99,22 @@ class ModelZoo():
                 else:
                     self.set_database_path(model, task['database_path'])
 
-
+    def get_attributes(self):
+        attributes = {
+            # 'config': self.config,
+            '__models': self.__models,
+            '__sub_models': self.__sub_models,
+            '__types': self.__types,
+            '__batch_sizes': self.__batch_sizes,
+            '__graph_path': self.__graph_path, 
+            '__graph_path_multi_gpu': self.__graph_path_multi_gpu,
+            '__database_path': self.__database_path, 
+            '__nccl_dataset': self.__nccl_dataset,  
+            '__baseline': self.__baseline
+        }
+        for attr, value in attributes.items():
+            print(f"{attr}: {value}")
+        # return attributes
 
     def exist_model(self, model):
         if model in self.__models:
